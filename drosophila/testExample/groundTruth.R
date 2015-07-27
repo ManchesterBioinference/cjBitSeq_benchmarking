@@ -3,36 +3,37 @@ txid <- read.table("../Annotation/trNames.tr")[,1]
 K <- length(txid)
 mus0 <- rep(0,K)
 expressedIndex <- sample(K,5000,replace = FALSE)
-nDE <- 2000
+myHALFDETRANCRIPTS <- 1000
+nDE <- 2*HALFDETRANCRIPTS
 deIndex <- sample(K,nDE,replace = FALSE)
 mus0[expressedIndex] <- rep(65,length(expressedIndex))
 
 #conditionA1
 mus <- mus0
-mus[deIndex[1:(nDE/2)]] <- rep(20,1000)
-mus[deIndex[(1+nDE/2):nDE]] <- rep(100,1000)
+mus[deIndex[1:(nDE/2)]] <- rep(20,nDE/2)
+mus[deIndex[(1+nDE/2):nDE]] <- rep(100,nDE/2)
 rpk <- rpois(K,mus)
 tr_File_1 <- data.frame(txid,rpk)
 write.table(tr_File_1,file = "tr_File_A1.tr",quote = FALSE,row.names = FALSE,sep = "\t")
 #conditionA2
 mus <- mus0
-mus[deIndex[1:(nDE/2)]] <- rep(20,1000)
-mus[deIndex[(1+nDE/2):nDE]] <- rep(100,1000)
+mus[deIndex[1:(nDE/2)]] <- rep(20,nDE/2)
+mus[deIndex[(1+nDE/2):nDE]] <- rep(100,nDE/2)
 rpk <- rpois(K,mus)
 tr_File_1 <- data.frame(txid,rpk)
 write.table(tr_File_1,file = "tr_File_A2.tr",quote = FALSE,row.names = FALSE,sep = "\t")
 
 #conditionB1
 mus <- mus0
-mus[deIndex[1:(nDE/2)]] <- rep(100,1000)
-mus[deIndex[(1+nDE/2):nDE]] <- rep(20,1000)
+mus[deIndex[1:(nDE/2)]] <- rep(100,nDE/2)
+mus[deIndex[(1+nDE/2):nDE]] <- rep(20,nDE/2)
 rpk <- rpois(K,mus)
 tr_File_2 <- data.frame(txid,rpk)
 write.table(tr_File_2,file = "tr_File_B1.tr",quote = FALSE,row.names = FALSE,sep = "\t")
 #conditionB2
 mus <- mus0
-mus[deIndex[1:(nDE/2)]] <- rep(100,1000)
-mus[deIndex[(1+nDE/2):nDE]] <- rep(20,1000)
+mus[deIndex[1:(nDE/2)]] <- rep(100,nDE/2)
+mus[deIndex[(1+nDE/2):nDE]] <- rep(20,nDE/2)
 rpk <- rpois(K,mus)
 tr_File_2 <- data.frame(txid,rpk)
 write.table(tr_File_2,file = "tr_File_B2.tr",quote = FALSE,row.names = FALSE,sep = "\t")
