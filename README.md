@@ -18,7 +18,9 @@ rsem-1.2.15
 
 cjBitSeq
 
-Also boost libraries and samtools should be available on your system. 
+R
+
+Also boost libraries and samtools should be available on your system. Required R libraries: Matrix, foreach, doMC, EBSeq, ROCR, pracma, fields. 
 
 1. CD to the drosophila/Annotation directory
 2. Run ./makeAnnotation.sh which will extract and build the necessary reference annotations
