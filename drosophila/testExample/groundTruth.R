@@ -4,7 +4,7 @@ K <- length(txid)
 mus0 <- rep(0,K)
 expressedIndex <- sample(K,5000,replace = FALSE)
 myHALFDETRANCRIPTS <- 1000
-nDE <- 2*HALFDETRANCRIPTS
+nDE <- 2*myHALFDETRANCRIPTS
 deIndex <- sample(K,nDE,replace = FALSE)
 mus0[expressedIndex] <- rep(65,length(expressedIndex))
 
