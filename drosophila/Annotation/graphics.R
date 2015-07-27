@@ -390,7 +390,7 @@ n2345 <- intersect(n234,ind_col)
 n12345 <- intersect(n1234,ind_col)
 catNames <- c("ground-truth","BitSeq","EbSeq","Cuffdiff","cjBitSeq")
 
-pdf(file = "vennHiseq-jeffreys.pdf",width = 6,height=6,pointsize=9)
+pdf(file = "vennDiagram.pdf",width = 6,height=6,pointsize=9)
 #plot(c(0,1),c(0,1),type = "n",main = paste("HiSeq"),xaxt="n",yaxt="n",xlab = "",ylab = "",bty="n",cex.main=2)
 venn.plot <- draw.quintuple.venn(
 area1 = length(ind_rj),

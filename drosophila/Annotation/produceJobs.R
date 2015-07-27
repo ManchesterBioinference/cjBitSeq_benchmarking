@@ -175,3 +175,35 @@ cat(myCommand7,"\n",file = conOut1,append=TRUE)
 
 close(conOut1)
 
+
+
+conOut1 <- file("runMe.sh",open = "w")
+myCommand1 <- "./simulateReads.sh"
+cat(myCommand1,"\n",file = conOut1,append=TRUE)
+myCommand1 <- "alignReads.sh"
+cat(myCommand1,"\n",file = conOut1,append=TRUE)
+myCommand1 <- "cjBitSeq.sh"
+cat(myCommand1,"\n",file = conOut1,append=TRUE)
+myCommand1 <- "BitSeq.sh"
+cat(myCommand1,"\n",file = conOut1,append=TRUE)
+myCommand1 <- "cufflinks.sh"
+cat(myCommand1,"\n",file = conOut1,append=TRUE)
+myCommand1 <- "rsem.sh"
+cat(myCommand1,"\n",file = conOut1,append=TRUE)
+myCommand1 <- "R CMD BATCH ../Annotation/graphics.R"
+close(conOut1)
+
+system("chmod u+x runMe.sh")
+system("chmod u+x simulateReads.sh")
+system("chmod u+x alignReads.sh")
+system("chmod u+x cjBitSeq.sh")
+system("chmod u+x BitSeq.sh")
+system("chmod u+x cufflinks.sh")
+system("chmod u+x rsem.sh")
+
+
+
+
+
+
+
