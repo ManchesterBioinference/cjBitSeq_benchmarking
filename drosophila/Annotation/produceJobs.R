@@ -180,17 +180,18 @@ close(conOut1)
 conOut1 <- file("runMe.sh",open = "w")
 myCommand1 <- "./simulateReads.sh"
 cat(myCommand1,"\n",file = conOut1,append=TRUE)
-myCommand1 <- "alignReads.sh"
+myCommand1 <- "./alignReads.sh"
 cat(myCommand1,"\n",file = conOut1,append=TRUE)
-myCommand1 <- "cjBitSeq.sh"
+myCommand1 <- "./cjBitSeq.sh"
 cat(myCommand1,"\n",file = conOut1,append=TRUE)
-myCommand1 <- "BitSeq.sh"
+myCommand1 <- "./BitSeq.sh"
 cat(myCommand1,"\n",file = conOut1,append=TRUE)
-myCommand1 <- "cufflinks.sh"
+myCommand1 <- "./cufflinks.sh"
 cat(myCommand1,"\n",file = conOut1,append=TRUE)
-myCommand1 <- "rsem.sh"
+myCommand1 <- "./rsem.sh"
 cat(myCommand1,"\n",file = conOut1,append=TRUE)
 myCommand1 <- "R CMD BATCH ../Annotation/graphics.R"
+cat(myCommand1,"\n",file = conOut1,append=TRUE)
 close(conOut1)
 
 system("chmod u+x runMe.sh")
