@@ -81,7 +81,7 @@ conOut1 <- file("rsem.sh",open = "w")
 cat("mkdir rsem","\n",file = conOut1,append=TRUE)
 cat("cd rsem","\n",file = conOut1,append=TRUE)
 for (i in c(paste("A",1:n1,sep=""),paste("B",1:n2,sep=""))){
-	myCommand1 <- paste("rsem-calculate-expression -p 4 --bowtie2 --paired-end ../",i,"/sim_1.fastq ../",i,"/sim_2.fastq ../../Annotation/rsemReference/ref expression",i,sep="")
+	myCommand1 <- paste("rsem-calculate-expression -p 4 --bowtie2 --paired-end --no-bam-output ../",i,"/sim_1.fastq ../",i,"/sim_2.fastq ../../Annotation/rsemReference/ref expression",i,sep="")
 	cat(myCommand1,"\n",file = conOut1,append=TRUE)
 }
 cat("R CMD BATCH ../ebSeq.R","\n",file = conOut1,append=TRUE)
