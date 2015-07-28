@@ -1,6 +1,19 @@
 pplr <- read.table(file = "bitseq/data.pplr")[,1]
 cufflinksDE <- read.table("cufflinks/cufflinksDE.txt")[,1]
 collapsed <- read.table("cjBitSeqOutput/estimates.txt",header=TRUE)
+dc <- dim(collapsed)[1]
+lp <- length(pplr)
+if (dc < lp){
+	mex <- lp - dc
+	myMin <- min(collapsed[,1:2]) - 100
+	myF <- c(myMin,myMin,0,"non-DE","non-DE","non-DE")
+	for(i in 1:mex){
+		collapsed <- rbind(collapsed,myF)
+	}
+}
+collapsed[,1] <- as.numeric(collapsed[,1])
+collapsed[,2] <- as.numeric(collapsed[,2])
+collapsed[,3] <- as.numeric(collapsed[,3])
 bitseqPredictions <- 2*abs(0.5 - pplr)
 cufflinksPredictions <- cufflinksDE
 ebSeqDE2 <- as.numeric(read.table("rsem/ebSeqDe.txt")[,1])
