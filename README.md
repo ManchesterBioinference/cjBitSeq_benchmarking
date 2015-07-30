@@ -32,13 +32,13 @@ To run the test example:
 
 1. CD to the drosophila/testExample directory and run `R CMD BATCH groundTruth.R` which will simulate ground truth files.
 2. Run `runMe.sh` in order to:
-* simulate reads with spanki
-*  align reads with bowtie2
-*  run cjBitSeq
-*  run BitSeq stage1/stage2
-*  run Cufflinks/Cuffdif
-*  run RSEM/EBSeq
-*  produce graphs in *.pdf format.
+    * simulate reads with spanki
+    *  align reads with bowtie2
+    *  run cjBitSeq
+    *  run BitSeq stage1/stage2
+    *  run Cufflinks/Cuffdif
+    *  run RSEM/EBSeq
+    *  produce graphs in *.pdf format.
 
 The graphs include the following:
 
