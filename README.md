@@ -23,8 +23,10 @@ Also boost libraries and samtools should be available on your system. Required R
 * pracma
 * fields
 
+We provide drosophila and human examples. The following steps apply to the drosophila annotation but they are essentially the same for the human annotation. 
+
 1. CD to the drosophila/Annotation directory
-2. Run ./makeAnnotation.sh which will extract and build the necessary reference annotations
+2. Run ./makeAnnotation.sh which will extract and build the necessary reference annotations (it needs to be done only once).
 
 To run the test example:
 
@@ -37,3 +39,17 @@ To run the test example:
 *  run Cufflinks/Cuffdif
 *  run RSEM/EBSeq
 *  produce graphs in *.pdf format.
+
+The graphs include the following:
+
+* SAR curve
+* ROC curve
+* precision-recall curve
+* power-to-achieved FDR plots
+* venn graph of DE transcripts at the 0.05 level
+* scatterplot of the true relative transcript expression (in log-scale) for both conditions coloured according to the DE evidence of each method.
+
+
+SAR-curve tends to be the most informative plot: it combines three different performance measures, that is, (a) Accuracy, (b) Area under Curve and (c) Root mean square Error.
+
+

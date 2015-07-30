@@ -104,50 +104,41 @@ for (i in 1:n2){
 	myCommand1 <- paste("rawData <- cbind(rawData,",myFile,")",sep="")
 	cat(myCommand1,"\n",file = conOut1,append=TRUE)
 }
-myCommand1 <- "perm <- order(read.table('expressionB1.isoforms.results',header = TRUE)[,1])"
-myCommand2 <- "rawData <- rawData[perm,]"
+myCommand1 <- "K <- 48009"
+myCommand2 <- "myFile <- file('../../Annotation/FastaNames.txt',open='r')"
 cat(myCommand1,"\n",file = conOut1,append=TRUE)
 cat(myCommand2,"\n",file = conOut1,append=TRUE)
-myCommand1 <- "gff <- read.table('../cufflinks/cuff_compare.combined.gtf')"
-myCommand2 <- "myNames <- read.table('../../Annotation/trNames.tr')[,1]"
-myCommand3 <- "cuffTranscripts <- read.table('../cufflinks/cuff_compare.combined.gtf')[,19]"
-myCommand4 <- "K <- length(myNames)"
-myCommand5 <- "perm <- match(myNames,cuffTranscripts)"
-cat(myCommand1,"\n",file = conOut1,append=TRUE)
-cat(myCommand2,"\n",file = conOut1,append=TRUE)
-cat(myCommand3,"\n",file = conOut1,append=TRUE)
-cat(myCommand4,"\n",file = conOut1,append=TRUE)
-cat(myCommand5,"\n",file = conOut1,append=TRUE)
-myCommand1 <- "indexNA <- which(is.na(perm)==TRUE)"
-myCommand2 <- "cuffTCONS <- read.table('../cufflinks/cuff_compare.combined.gtf')[,c(13,19,10)]"
-myCommand3 <- "geneNames <- numeric(K)"
-myCommand4 <- "indexNA <- which(is.na(perm)==TRUE)"
-myCommand5 <- "geneNames[indexNA] <- paste('XnotHere_',1:length(indexNA),sep='')"
+myCommand1 <- "sailNames <- array(data = NA, dim = c(K,2))"
+myCommand2 <- "i <- 0"
+myCommand3 <- "while (length(oneLine <- readLines(myFile, n = 1, warn = FALSE)) > 0){i <- i + 1"
+myCommand4 <- "sailNames[i,1] <- as.numeric(strsplit(strsplit(oneLine,split = ' ')[[1]][1],split = '>')[[1]][2])"
+myCommand5 <- "sailNames[i,2] <- strsplit(oneLine,split = ' ')[[1]][2]}"
 cat(myCommand1,"\n",file = conOut1,append=TRUE)
 cat(myCommand2,"\n",file = conOut1,append=TRUE)
 cat(myCommand3,"\n",file = conOut1,append=TRUE)
 cat(myCommand4,"\n",file = conOut1,append=TRUE)
 cat(myCommand5,"\n",file = conOut1,append=TRUE)
-myCommand1 <- "cuffResults <- read.table('../cufflinks/cuffdif_out/isoform_exp.diff',header = TRUE)[,c(1,13,2)]"
-myCommand2 <- "for(i in 1:K){"
-myCommand3 <- "if(is.na(perm[i]) == FALSE){"
-myCommand4 <- "geneNames[i] <- as.character(cuffResults[match(cuffTCONS[match(cuffTranscripts[perm[i]],cuffTCONS[,2]),][,1],cuffResults[,1]),][,3])}"
-myCommand5 <- "if(i%%1000==0){print(i)}}"
+myCommand1 <- "close(myFile)"
+myCommand2 <- "A1 <- read.table('expressionA1.isoforms.results',header=TRUE)"
+myCommand3 <- "groundTruth <- read.table('../A1/transcriptNames.txt')"
+myCommand4 <- "rawData2 <- rawData"
+myCommand5 <- "genes <- read.table('../../Annotation/geneTranscriptNames.txt',fill=TRUE)"
 cat(myCommand1,"\n",file = conOut1,append=TRUE)
 cat(myCommand2,"\n",file = conOut1,append=TRUE)
 cat(myCommand3,"\n",file = conOut1,append=TRUE)
 cat(myCommand4,"\n",file = conOut1,append=TRUE)
 cat(myCommand5,"\n",file = conOut1,append=TRUE)
-myCommand1 <- "IsoMat <- as.numeric(rawData[,1])"
+myCommand1 <- "for (i in 1:dim(groundTruth)[1]){j <- which(sailNames[,2] == as.character(genes[i,2]));if(length(j)>0){k <- which(A1[,1] == sailNames[j,1]);rawData2[i,] <- rawData[k,]}else{"
+myCommand2 <- "rawData2[i,] <- rep(0,dim(rawData2)[2])}"
+myCommand3 <- "if(i%%1000 == 0){print(i)}}"
 cat(myCommand1,"\n",file = conOut1,append=TRUE)
-for (i in 2:(n1+n2)){
-	myFile <- paste("rawData[,",i,"]",sep="")
-	myCommand1 <- paste("IsoMat <- cbind(IsoMat,",myFile,")",sep="")
-	cat(myCommand1,"\n",file = conOut1,append=TRUE)
-}
-myCommand1 <- "rownames(IsoMat) <- myNames"
-myCommand2 <- "IsoNames <- myNames"
-myCommand3 <- "IsosGeneNames <- geneNames"
+cat(myCommand2,"\n",file = conOut1,append=TRUE)
+cat(myCommand3,"\n",file = conOut1,append=TRUE)
+myCommand1 <- "IsoMat <- rawData2"
+cat(myCommand1,"\n",file = conOut1,append=TRUE)
+myCommand1 <- "rownames(IsoMat) <- genes[,2]"
+myCommand2 <- "IsoNames <- genes[,2]"
+myCommand3 <- "IsosGeneNames <- genes[,1]"
 myCommand4 <- "IsoSizes=MedianNorm(IsoMat)"
 myCommand5 <- "NgList=GetNg(IsoNames, IsosGeneNames)"
 myCommand6 <- "IsoNgTrun=NgList$IsoformNgTrun"
