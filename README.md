@@ -50,6 +50,6 @@ The graphs include the following:
 * scatterplot of the true relative transcript expression (in log-scale) for both conditions coloured according to the DE evidence of each method.
 
 
-SAR-curve tends to be the most informative plot: it combines three different performance measures, that is, (a) Accuracy, (b) Area under Curve and (c) Root mean square Error.
+SAR-curve tends to be the most informative plot: it combines three different performance measures, that is, (a) Accuracy, (b) Area under Curve and (c) Root mean square Error, as a function of the cut-off threshold (which is controlled by the user). The highlighted area of the SAR-curve corresponds to the range of the cut-off values used in practice (that is, \alpha < 0.1).
 
 
