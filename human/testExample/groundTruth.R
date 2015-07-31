@@ -1,7 +1,7 @@
 # load names
 txid <- read.table("../Annotation/trNames.tr")[,1]
-trLengths <- read.table("../Annotation/data.tr")
-smallTranscripts <- which(trLengths[,4] < 200)
+trLengths <- read.table("../Annotation/spankiNameOrder.txt",header=TRUE)
+smallTranscripts <- which(trLengths$length < 200)
 K <- length(txid)
 mus0 <- rep(0,K)
 activeTranscripts <- 1:K

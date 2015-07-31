@@ -1,11 +1,16 @@
 # load names
 txid <- read.table("../Annotation/trNames.tr")[,1]
+trLengths <- read.table("../Annotation/spankiNameOrder.txt",header=TRUE)
+smallTranscripts <- which(trLengths$length < 200)
 K <- length(txid)
 mus0 <- rep(0,K)
-expressedIndex <- sample(K,5000,replace = FALSE)
-myHALFDETRANCRIPTS <- 1000
-nDE <- 2*myHALFDETRANCRIPTS
-deIndex <- sample(K,nDE,replace = FALSE)
+activeTranscripts <- 1:K
+activeTranscripts <- activeTranscripts[-smallTranscripts]
+Kactive <- length(activeTranscripts)
+set.seed(1)
+expressedIndex <- activeTranscripts[sample(Kactive,10000,replace = FALSE)]
+nDE <- 2000
+deIndex <- activeTranscripts[sample(Kactive,nDE,replace = FALSE)]
 mus0[expressedIndex] <- rep(65,length(expressedIndex))
 
 #conditionA1
