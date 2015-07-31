@@ -1,10 +1,9 @@
 # load names
 txid <- read.table("../Annotation/trNames.tr")[,1]
 trLengths <- read.table("../Annotation/data.tr")
-smallTranscripts <- which(trLengths[,3] < 200)
+smalls <- which(trLengths[,3] < 200)
 K <- length(txid)
 
-smalls <- which(l<200)
 probs = rep(1/(K - length(smalls)),K)
 probs[smalls] <- rep(0,length(smalls))
 mus0 <- rep(0,K)
