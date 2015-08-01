@@ -1,5 +1,5 @@
 # cjBitSeq_benchmarking
-benchmarking experiments for cjBitSeq
+benchmarking experiments for cjBitSeq (in progress)
 
 
 The following software is required:
